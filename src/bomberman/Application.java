@@ -20,7 +20,7 @@ public class Application extends JFrame{
 
     private void initUI() {
         add(new Board());
-        setSize(544,528);
+        setSize(544,550);
         
         setTitle("Bomberman");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
