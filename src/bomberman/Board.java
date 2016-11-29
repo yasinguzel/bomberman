@@ -45,6 +45,7 @@ public class Board extends JPanel{
     }
 
     private void drawFrame(Graphics g) {
+        //draw game map
         int line=0,column=0;
         for (int i = 48; i < 528; i+=32) {
             for (int j = 0; j < 544; j+=32) {
