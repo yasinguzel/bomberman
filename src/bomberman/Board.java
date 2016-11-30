@@ -7,7 +7,6 @@ package bomberman;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -57,8 +56,8 @@ public class Board extends JPanel{
                     g.drawImage(nonFragileWall, j, i, null);   
                 else if((line==1)&&(column==1)||(line==1)&&(column==2)||(line==1)&&(column==3)||(line==2)&&(column==1)||(line==3)&&(column==1)){}
                 else if((line==13)&&(column==15)||(line==13)&&(column==14)||(line==13)&&(column==13)||(line==12)&&(column==15)||(line==11)&&(column==15)){}
-                else
-                    g.drawImage(FragileWall, j, i, null);                   
+//                else
+//                    g.drawImage(FragileWall, j, i, null);                   
                 column++;
             }
             column=0;
