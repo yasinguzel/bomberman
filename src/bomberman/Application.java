@@ -24,7 +24,7 @@ public class Application extends JFrame{
         setSize(544,550);
         
         setTitle("Bomberman");
-        setBackground(Color.green);
+        setBackground(new Color(46,204,113));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
