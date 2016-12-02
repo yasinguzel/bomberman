@@ -7,6 +7,7 @@ package bomberman;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -18,6 +19,7 @@ public class Board extends JPanel{
     
     private ArrayList fws = new ArrayList(); //FragileWalls Array
     private ArrayList nfws = new ArrayList(); //nonFragileWalls Array
+    private Player[] Players = new Player[2]; //Players Array
     
     public Board(){
         initBoard();
@@ -56,7 +58,6 @@ public class Board extends JPanel{
                     nfws.add(nfw);
                     g.drawImage(nfw.getImage(), j, i, null);
                 }
-                
                 else if((line==1)&&(column==1)||(line==1)&&(column==2)||(line==1)&&(column==3)||(line==2)&&(column==1)||(line==3)&&(column==1)){}
                 else if((line==13)&&(column==15)||(line==13)&&(column==14)||(line==13)&&(column==13)||(line==12)&&(column==15)||(line==11)&&(column==15)){}
 //                else{
@@ -64,6 +65,14 @@ public class Board extends JPanel{
 //                    fws.add(fw);
 //                    g.drawImage(fw.getImage(), j, i, null);
 //                }
+                if((line==1)&&(column==1)){
+                    Players[0]=new Player(j, i);
+                    g.drawImage(Players[0].getImage(), j, i, null);                      
+                }
+                if((line==13)&&(column==15)){
+                    Players[1]=new Player(j, i);
+                    g.drawImage(Players[1].getImage(), j, i, null);
+                }
                                       
                 column++;
             }
