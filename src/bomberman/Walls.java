@@ -5,51 +5,26 @@
  */
 package bomberman;
 
-import java.awt.Image;
 import java.awt.Rectangle;
-import javax.swing.ImageIcon;
+
 
 /**
  *
  * @author yasinguzel
  */
-public class Walls {
+public class Walls extends Entity{
     
-    protected int x;
-    protected int y;
-    protected int width;
-    protected int height;
-    protected Image image;
+    Rectangle r;
     
-    public Walls(int x,int y){
-        this.x = x;
-        this.y = y;
+    public Walls(int x, int y) {
+        super(x, y);
+        initWalls();
+    }
+
+    private void initWalls() {
+        r = getBounds();
     }
     
-    protected void loadImage(String imageName){
-        ImageIcon ii = new ImageIcon(imageName);
-        image = ii.getImage();
-    }
     
-    protected void getImageDimensions(){
-        width = image.getWidth(null);
-        height = image.getHeight(null);
-    }
-    
-    public Image getImage(){
-        return image;
-    }
-    
-    public int getX(){
-        return x;
-    }
-    
-    public int getY(){
-        return y;
-    }
-        
-    public Rectangle getBounds(){
-        return new Rectangle(x, y, width, height);
-    }
     
 }
