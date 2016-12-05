@@ -101,8 +101,8 @@ public class Board extends JPanel implements ActionListener
     }
     
     public void actionPerformed(ActionEvent e){
+        updatePlayers();
         checkCollisions();
-        updatePlayer();
         repaint();
     }
     
@@ -122,7 +122,7 @@ public class Board extends JPanel implements ActionListener
         System.out.println(NotCollision);
     }
 
-    private void updatePlayer() {
+    private void updatePlayers() {
         if (NotCollision) {
             player.move();
         }
