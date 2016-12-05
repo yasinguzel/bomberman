@@ -6,6 +6,7 @@
 package bomberman;
 
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -13,9 +14,9 @@ import java.awt.Rectangle;
  */
 public class Player extends Entity
 {
-
-    Rectangle r;
-
+    private int dx;
+    private int dy;
+    
     public Player(int x, int y)
     {
         super(x, y);
@@ -24,9 +25,60 @@ public class Player extends Entity
 
     private void InitPlayer()
     {
-        r = getBounds();
-        loadImage("/home/blacklake/NetBeansProjects/Bomberman/images/Player/player.png");
+        loadImage("images/Player/player.png");
         getImageDimensions();
+    }
+    
+    public void move(){
+        x+=dx;
+        y+=dy;
+    }
+    
+    public Rectangle getBounds(){
+        return new Rectangle(x, y, 22, 22);
+    }
+    
+    public void keyReleased(KeyEvent e) {
+        
+        int key = e.getKeyCode();
+        
+        if (key == KeyEvent.VK_LEFT) {
+            dx = 0;
+        }
+        
+        if (key == KeyEvent.VK_RIGHT) {
+            dx = 0;
+        }
+        
+        if (key == KeyEvent.VK_UP) {
+            dy = 0;
+        }
+        
+        if (key == KeyEvent.VK_DOWN) {
+            dy = 0;
+        }
+    }
+    
+    
+
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+        
+        if (key == KeyEvent.VK_LEFT) {
+            dx = -1;
+        }
+        
+        if (key == KeyEvent.VK_RIGHT) {
+            dx = 1;
+        }
+        
+        if (key == KeyEvent.VK_UP) {
+            dy = -1;
+        }
+        
+        if (key == KeyEvent.VK_DOWN) {
+            dy = 1;
+        }
     }
 
 }
