@@ -25,7 +25,7 @@ public class Player extends Entity
     private void InitPlayer()
     {
         r = getBounds();
-        loadImage("images/walls/FragileWall.png");
+        loadImage("/home/blacklake/NetBeansProjects/Bomberman/images/Player/player.png");
         getImageDimensions();
     }
 
