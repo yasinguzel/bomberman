@@ -19,7 +19,7 @@ public class FragileWall extends Walls{
     }
 
     private void initFragileWall() {
-        loadImage("images/walls/FragileWall.png");
+        loadImage("images/walls/fragilewall.png");
         getImageDimensions();
     }
     
