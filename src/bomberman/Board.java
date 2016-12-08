@@ -21,8 +21,8 @@ public class Board extends JPanel
 
     Walls wall[][] = new Walls[15][17];//Wall table
     int map[][] = new int[15][17]; //[satır][sütun]
-    private Player player1; //Players Array
-    int playerX=1,playerY=1;
+    private Player[] players = new Player[2];//Players Array
+    int player1X=1,player1Y=1;
 
 
     public Board()
@@ -35,7 +35,8 @@ public class Board extends JPanel
         addKeyListener(new TAdapter());
         setFocusable(true);
         setDoubleBuffered(true);
-        player1 = new Player(32, 80);
+        players[0] = new Player(32, 80);
+        players[1] = new Player(32, 80);
         drawMap();
     }
     
@@ -64,7 +65,7 @@ public class Board extends JPanel
                     } 
                 }
             }
-            map[playerY][playerX] = 1;
+            map[player1Y][player1X] = 1;
         }
     
     public void paintComponent(Graphics g)
@@ -76,7 +77,7 @@ public class Board extends JPanel
     private void drawObjects(Graphics g) {
         //draw game map
         showMap();
-        g.drawImage(player1.getImage(), player1.getX(), player1.getY(), this);
+        g.drawImage(players[0].getImage(), players[0].getX(), players[0].getY(), this);
         
         FragileWall fw;
         NonFragileWall nfw;
@@ -154,59 +155,59 @@ public class Board extends JPanel
         //map[satır][sutun],map[y][x]        
             int key = e.getKeyCode();
             if(key == KeyEvent.VK_LEFT){
-                playerX--;
-                if (map[playerY][playerX] == 2) {
-                    playerX++;
+                player1X--;
+                if (map[player1Y][player1X] == 2) {
+                    player1X++;
                     return;
                 }
-                map[playerY][playerX] = 1;
-                playerX++;
-                map[playerY][playerX] = 0;
-                playerX--;
-                player1.setDx(-32);
-                player1.move();
+                map[player1Y][player1X] = 1;
+                player1X++;
+                map[player1Y][player1X] = 0;
+                player1X--;
+                players[0].setDx(-32);
+                players[0].move();
             }
             if(key == KeyEvent.VK_RIGHT){   
-                playerX++;
-                if (map[playerY][playerX] == 2) {
-                    playerX--;
+                player1X++;
+                if (map[player1Y][player1X] == 2) {
+                    player1X--;
                     return;
                     
                 }
-                map[playerY][playerX] = 1;
-                playerX--;
-                map[playerY][playerX] = 0;
-                playerX++;
-                player1.setDx(32);
-                player1.move();
+                map[player1Y][player1X] = 1;
+                player1X--;
+                map[player1Y][player1X] = 0;
+                player1X++;
+                players[0].setDx(32);
+                players[0].move();
             }
             if(key == KeyEvent.VK_UP){
-                playerY--;
-                if (map[playerY][playerX] == 2) {
-                    playerY++;
+                player1Y--;
+                if (map[player1Y][player1X] == 2) {
+                    player1Y++;
                     return;
                     
                 }
-                map[playerY][playerX] = 1;
-                playerY++;
-                map[playerY][playerX] = 0;
-                playerY--;
-                player1.setDy(-32);
-                player1.move();
+                map[player1Y][player1X] = 1;
+                player1Y++;
+                map[player1Y][player1X] = 0;
+                player1Y--;
+                players[0].setDy(-32);
+                players[0].move();
                 
             }
             if(key == KeyEvent.VK_DOWN){
-                playerY++;
-                if (map[playerY][playerX] == 2) {
-                    playerY--;
+                player1Y++;
+                if (map[player1Y][player1X] == 2) {
+                    player1Y--;
                     return;
                 }
-                map[playerY][playerX] = 1;
-                playerY--;
-                map[playerY][playerX] = 0;
-                playerY++;
-                player1.setDy(32);
-                player1.move();
+                map[player1Y][player1X] = 1;
+                player1Y--;
+                map[player1Y][player1X] = 0;
+                player1Y++;
+                players[0].setDy(32);
+                players[0].move();
             }            
             repaint();
         }
