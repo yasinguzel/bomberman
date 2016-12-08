@@ -5,7 +5,6 @@
  */
 package bomberman;
 
-import java.awt.Rectangle;
 
 /**
  *
@@ -13,20 +12,42 @@ import java.awt.Rectangle;
  */
 public class Player extends Entity
 {
-
-    Rectangle r;
-
+    private int dx;
+    private int dy;
+    
     public Player(int x, int y)
     {
         super(x, y);
         InitPlayer();
     }
 
+
     private void InitPlayer()
     {
-        r = getBounds();
-        loadImage("/home/blacklake/NetBeansProjects/Bomberman/images/Player/player.png");
+        loadImage("images/Player/player.png");
         getImageDimensions();
     }
+    
+    public void move(){
+            x+=dx;
+            y+=dy;
+            System.out.println("PlayerX: "+x+" PlayerY: "+y+"PlayerDx: "+dx+"PlayerDY: "+dy);
+            setZero();
+    }
+    
+    public void setDx(int dx){
+        this.dx = dx;
+    }
+    
+    public void setDy(int dy){
+        this.dy = dy;
+    }
+    
+    public void setZero(){
+        dx = 0;
+        dy = 0;
+    }
+    
+    
 
 }

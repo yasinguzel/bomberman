@@ -20,6 +20,7 @@ public class Entity {
     protected int width;
     protected int height;
     protected Image image;
+    protected boolean vis;
     
     public Entity(int x,int y){
         this.x = x;
@@ -50,5 +51,13 @@ public class Entity {
         
     public Rectangle getBounds(){
         return new Rectangle(x, y, width, height);
+    }
+    
+    public boolean isVisible(){
+        return vis;
+    }
+    
+    public void setVisible(Boolean visible){
+        vis = visible;
     }
 }

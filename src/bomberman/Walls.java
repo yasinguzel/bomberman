@@ -14,15 +14,17 @@ import java.awt.Rectangle;
  */
 public class Walls extends Entity{
     
-    Rectangle r;
-    
     public Walls(int x, int y) {
         super(x, y);
         initWalls();
     }
 
     private void initWalls() {
-        r = getBounds();
+        
+    }
+    
+    public Rectangle getBounds(){
+        return new Rectangle(x, y, 32, 32);
     }
     
     
