@@ -5,7 +5,10 @@
         <group>
             <file>file:/Users/yasinguzel/NetBeansProjects/Bomberman/src/bomberman/Board.java</file>
             <file>file:/Users/yasinguzel/NetBeansProjects/Bomberman/src/bomberman/Player.java</file>
+            <file>file:/Users/yasinguzel/NetBeansProjects/Bomberman/src/bomberman/Walls.java</file>
+            <file>file:/Users/yasinguzel/NetBeansProjects/Bomberman/src/bomberman/FragileWall.java</file>
             <file>file:/Users/yasinguzel/NetBeansProjects/Bomberman/src/bomberman/Entity.java</file>
+            <file>file:/Users/yasinguzel/NetBeansProjects/Bomberman/src/bomberman/NonFragileWall.java</file>
         </group>
     </open-files>
 </project-private>

@@ -5,8 +5,6 @@
  */
 package bomberman;
 
-import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
 
 /**
  *
@@ -23,6 +21,7 @@ public class Player extends Entity
         InitPlayer();
     }
 
+
     private void InitPlayer()
     {
         loadImage("images/Player/player.png");
@@ -30,55 +29,25 @@ public class Player extends Entity
     }
     
     public void move(){
-        x+=dx;
-        y+=dy;
+            x+=dx;
+            y+=dy;
+            System.out.println("PlayerX: "+x+" PlayerY: "+y+"PlayerDx: "+dx+"PlayerDY: "+dy);
+            setZero();
     }
     
-    public Rectangle getBounds(){
-        return new Rectangle(x, y, 22, 22);
+    public void setDx(int dx){
+        this.dx = dx;
     }
     
-    public void keyReleased(KeyEvent e) {
-        
-        int key = e.getKeyCode();
-        
-        if (key == KeyEvent.VK_LEFT) {
-            dx = 0;
-        }
-        
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 0;
-        }
-        
-        if (key == KeyEvent.VK_UP) {
-            dy = 0;
-        }
-        
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 0;
-        }
+    public void setDy(int dy){
+        this.dy = dy;
+    }
+    
+    public void setZero(){
+        dx = 0;
+        dy = 0;
     }
     
     
-
-    public void keyPressed(KeyEvent e) {
-        int key = e.getKeyCode();
-        
-        if (key == KeyEvent.VK_LEFT) {
-            dx = -1;
-        }
-        
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 1;
-        }
-        
-        if (key == KeyEvent.VK_UP) {
-            dy = -1;
-        }
-        
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 1;
-        }
-    }
 
 }
