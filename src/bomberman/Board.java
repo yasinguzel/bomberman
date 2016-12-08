@@ -7,9 +7,12 @@ package bomberman;
 
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /**
  *
@@ -112,12 +115,12 @@ public class Board extends JPanel
                 {
                 } else if ((line == 13) && (column == 15) || (line == 13) && (column == 14) || (line == 13) && (column == 13) || (line == 12) && (column == 15) || (line == 11) && (column == 15))
                 {
-                }
+                } 
 //                else
 //                {
-//                     fw = new FragileWall(x, y);
-//                     wall[line][column] = fw;
-//                     g.drawImage(fw.getImage(), x, y, null);
+//                    fw = new FragileWall(x, y);
+//                    wall[line][column] = fw;
+//                    g.drawImage(fw.getImage(), x, y, null);
 //                }
 //                if ((line == 1) && (column == 1))
 //                {
@@ -148,140 +151,163 @@ public class Board extends JPanel
         }
     }
 
-    private class TAdapter extends KeyAdapter
+    private class TAdapter extends KeyAdapter implements ActionListener
     {
+
+        Timer timer;
+
+        public TAdapter()
+        {
+            timer = new Timer(100, this);
+            timer.start();
+        }
+
+        MultiKeyPressListener listener = new MultiKeyPressListener();
 
         public void keyPressed(KeyEvent e)
         {
-            //map[satır][sutun],map[y][x]        
-            int key = e.getKeyCode();
-            if (key == KeyEvent.VK_LEFT)
+            listener.keyPressed(e);
+        }
+
+        public void keyReleased(KeyEvent e)
+        {
+            listener.keyReleased(e);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            for (int key : listener.GetKeys())
             {
-                player1X--;
-                if (map[player1Y][player1X] == 2)
-                {
-                    player1X++;
-                    return;
-                }
-                map[player1Y][player1X] = 1;
-                player1X++;
-                map[player1Y][player1X] = 0;
-                player1X--;
-                players[0].setDx(-32);
-                players[0].move();
-            }
-            if (key == KeyEvent.VK_RIGHT)
-            {
-                player1X++;
-                if (map[player1Y][player1X] == 2)
+                if (key == KeyEvent.VK_LEFT)
                 {
                     player1X--;
-                    return;
-
+                    if (map[player1Y][player1X] == 2)
+                    {
+                        player1X++;
+                        return;
+                    }
+                    map[player1Y][player1X] = 1;
+                    player1X++;
+                    map[player1Y][player1X] = 0;
+                    player1X--;
+                    players[0].setDx(-32);
+                    players[0].move();
                 }
-                map[player1Y][player1X] = 1;
-                player1X--;
-                map[player1Y][player1X] = 0;
-                player1X++;
-                players[0].setDx(32);
-                players[0].move();
-            }
-            if (key == KeyEvent.VK_UP)
-            {
-                player1Y--;
-                if (map[player1Y][player1X] == 2)
+                if (key == KeyEvent.VK_RIGHT)
                 {
-                    player1Y++;
-                    return;
+                    player1X++;
+                    if (map[player1Y][player1X] == 2)
+                    {
+                        player1X--;
+                        return;
 
+                    }
+                    map[player1Y][player1X] = 1;
+                    player1X--;
+                    map[player1Y][player1X] = 0;
+                    player1X++;
+                    players[0].setDx(32);
+                    players[0].move();
                 }
-                map[player1Y][player1X] = 1;
-                player1Y++;
-                map[player1Y][player1X] = 0;
-                player1Y--;
-                players[0].setDy(-32);
-                players[0].move();
-
-            }
-            if (key == KeyEvent.VK_DOWN)
-            {
-                player1Y++;
-                if (map[player1Y][player1X] == 2)
+                if (key == KeyEvent.VK_UP)
                 {
                     player1Y--;
-                    return;
+                    if (map[player1Y][player1X] == 2)
+                    {
+                        player1Y++;
+                        return;
+
+                    }
+                    map[player1Y][player1X] = 1;
+                    player1Y++;
+                    map[player1Y][player1X] = 0;
+                    player1Y--;
+                    players[0].setDy(-32);
+                    players[0].move();
+
                 }
-                map[player1Y][player1X] = 1;
-                player1Y--;
-                map[player1Y][player1X] = 0;
-                player1Y++;
-                players[0].setDy(32);
-                players[0].move();
-            }
-            if (key == KeyEvent.VK_A)
-            {
-                player2X--;
-                if (map[player2Y][player2X] == 2)
+                if (key == KeyEvent.VK_DOWN)
                 {
-                    player2X++;
-                    return;
+                    player1Y++;
+                    if (map[player1Y][player1X] == 2)
+                    {
+                        player1Y--;
+                        return;
+                    }
+                    map[player1Y][player1X] = 1;
+                    player1Y--;
+                    map[player1Y][player1X] = 0;
+                    player1Y++;
+                    players[0].setDy(32);
+                    players[0].move();
                 }
-                map[player2Y][player2X] = 1;
-                player2X++;
-                map[player2Y][player2X] = 0;
-                player2X--;
-                players[1].setDx(-32);
-                players[1].move();
-            }
-            if (key == KeyEvent.VK_D)
-            {
-                player2X++;
-                if (map[player2Y][player2X] == 2)
+                if (key == KeyEvent.VK_A)
                 {
                     player2X--;
-                    return;
-
+                    if (map[player2Y][player2X] == 2)
+                    {
+                        player2X++;
+                        return;
+                    }
+                    map[player2Y][player2X] = 1;
+                    player2X++;
+                    map[player2Y][player2X] = 0;
+                    player2X--;
+                    players[1].setDx(-32);
+                    players[1].move();
                 }
-                map[player2Y][player2X] = 1;
-                player2X--;
-                map[player2Y][player2X] = 0;
-                player2X++;
-                players[1].setDx(32);
-                players[1].move();
-            }
-            if (key == KeyEvent.VK_W)
-            {
-                player2Y--;
-                if (map[player2Y][player2X] == 2)
+                if (key == KeyEvent.VK_D)
                 {
-                    player2Y++;
-                    return;
+                    player2X++;
+                    if (map[player2Y][player2X] == 2)
+                    {
+                        player2X--;
+                        return;
 
+                    }
+                    map[player2Y][player2X] = 1;
+                    player2X--;
+                    map[player2Y][player2X] = 0;
+                    player2X++;
+                    players[1].setDx(32);
+                    players[1].move();
                 }
-                map[player2Y][player2X] = 1;
-                player2Y++;
-                map[player2Y][player2X] = 0;
-                player2Y--;
-                players[1].setDy(-32);
-                players[1].move();
-
-            }
-            if (key == KeyEvent.VK_S)
-            {
-                player2Y++;
-                if (map[player2Y][player2X] == 2)
+                if (key == KeyEvent.VK_W)
                 {
                     player2Y--;
-                    return;
+                    if (map[player2Y][player2X] == 2)
+                    {
+                        player2Y++;
+                        return;
+
+                    }
+                    map[player2Y][player2X] = 1;
+                    player2Y++;
+                    map[player2Y][player2X] = 0;
+                    player2Y--;
+                    players[1].setDy(-32);
+                    players[1].move();
+
                 }
-                map[player2Y][player2X] = 1;
-                player2Y--;
-                map[player2Y][player2X] = 0;
-                player2Y++;
-                players[1].setDy(32);
-                players[1].move();
+                if (key == KeyEvent.VK_S)
+                {
+                    player2Y++;
+                    if (map[player2Y][player2X] == 2)
+                    {
+                        player2Y--;
+                        return;
+                    }
+                    map[player2Y][player2X] = 1;
+                    player2Y--;
+                    map[player2Y][player2X] = 0;
+                    player2Y++;
+                    players[1].setDy(32);
+                    players[1].move();
+                }
+                repaint();
             }
-            repaint();
+
         }
     }
 
