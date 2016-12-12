@@ -115,7 +115,7 @@ public class Board extends JPanel
                 {
                 } else if ((line == 13) && (column == 15) || (line == 13) && (column == 14) || (line == 13) && (column == 13) || (line == 12) && (column == 15) || (line == 11) && (column == 15))
                 {
-                } 
+                }
 //                else
 //                {
 //                    fw = new FragileWall(x, y);
@@ -185,14 +185,15 @@ public class Board extends JPanel
                     if (map[player1Y][player1X] == 2)
                     {
                         player1X++;
-                        return;
+                    } else
+                    {
+                        map[player1Y][player1X] = 1;
+                        player1X++;
+                        map[player1Y][player1X] = 0;
+                        player1X--;
+                        players[0].setDx(-32);
+                        players[0].move();
                     }
-                    map[player1Y][player1X] = 1;
-                    player1X++;
-                    map[player1Y][player1X] = 0;
-                    player1X--;
-                    players[0].setDx(-32);
-                    players[0].move();
                 }
                 if (key == KeyEvent.VK_RIGHT)
                 {
@@ -200,15 +201,17 @@ public class Board extends JPanel
                     if (map[player1Y][player1X] == 2)
                     {
                         player1X--;
-                        return;
 
+                    } else
+                    {
+
+                        map[player1Y][player1X] = 1;
+                        player1X--;
+                        map[player1Y][player1X] = 0;
+                        player1X++;
+                        players[0].setDx(32);
+                        players[0].move();
                     }
-                    map[player1Y][player1X] = 1;
-                    player1X--;
-                    map[player1Y][player1X] = 0;
-                    player1X++;
-                    players[0].setDx(32);
-                    players[0].move();
                 }
                 if (key == KeyEvent.VK_UP)
                 {
@@ -216,15 +219,17 @@ public class Board extends JPanel
                     if (map[player1Y][player1X] == 2)
                     {
                         player1Y++;
-                        return;
+
+                    } else
+                    {
+                        map[player1Y][player1X] = 1;
+                        player1Y++;
+                        map[player1Y][player1X] = 0;
+                        player1Y--;
+                        players[0].setDy(-32);
+                        players[0].move();
 
                     }
-                    map[player1Y][player1X] = 1;
-                    player1Y++;
-                    map[player1Y][player1X] = 0;
-                    player1Y--;
-                    players[0].setDy(-32);
-                    players[0].move();
 
                 }
                 if (key == KeyEvent.VK_DOWN)
@@ -233,14 +238,16 @@ public class Board extends JPanel
                     if (map[player1Y][player1X] == 2)
                     {
                         player1Y--;
-                        return;
+                    } else
+                    {
+
+                        map[player1Y][player1X] = 1;
+                        player1Y--;
+                        map[player1Y][player1X] = 0;
+                        player1Y++;
+                        players[0].setDy(32);
+                        players[0].move();
                     }
-                    map[player1Y][player1X] = 1;
-                    player1Y--;
-                    map[player1Y][player1X] = 0;
-                    player1Y++;
-                    players[0].setDy(32);
-                    players[0].move();
                 }
                 if (key == KeyEvent.VK_A)
                 {
@@ -248,14 +255,16 @@ public class Board extends JPanel
                     if (map[player2Y][player2X] == 2)
                     {
                         player2X++;
-                        return;
+                    } else
+                    {
+
+                        map[player2Y][player2X] = 1;
+                        player2X++;
+                        map[player2Y][player2X] = 0;
+                        player2X--;
+                        players[1].setDx(-32);
+                        players[1].move();
                     }
-                    map[player2Y][player2X] = 1;
-                    player2X++;
-                    map[player2Y][player2X] = 0;
-                    player2X--;
-                    players[1].setDx(-32);
-                    players[1].move();
                 }
                 if (key == KeyEvent.VK_D)
                 {
@@ -263,15 +272,17 @@ public class Board extends JPanel
                     if (map[player2Y][player2X] == 2)
                     {
                         player2X--;
-                        return;
 
+                    } else
+                    {
+
+                        map[player2Y][player2X] = 1;
+                        player2X--;
+                        map[player2Y][player2X] = 0;
+                        player2X++;
+                        players[1].setDx(32);
+                        players[1].move();
                     }
-                    map[player2Y][player2X] = 1;
-                    player2X--;
-                    map[player2Y][player2X] = 0;
-                    player2X++;
-                    players[1].setDx(32);
-                    players[1].move();
                 }
                 if (key == KeyEvent.VK_W)
                 {
@@ -279,15 +290,17 @@ public class Board extends JPanel
                     if (map[player2Y][player2X] == 2)
                     {
                         player2Y++;
-                        return;
 
+                    } else
+                    {
+
+                        map[player2Y][player2X] = 1;
+                        player2Y++;
+                        map[player2Y][player2X] = 0;
+                        player2Y--;
+                        players[1].setDy(-32);
+                        players[1].move();
                     }
-                    map[player2Y][player2X] = 1;
-                    player2Y++;
-                    map[player2Y][player2X] = 0;
-                    player2Y--;
-                    players[1].setDy(-32);
-                    players[1].move();
 
                 }
                 if (key == KeyEvent.VK_S)
@@ -296,14 +309,16 @@ public class Board extends JPanel
                     if (map[player2Y][player2X] == 2)
                     {
                         player2Y--;
-                        return;
+                    } else
+                    {
+
+                        map[player2Y][player2X] = 1;
+                        player2Y--;
+                        map[player2Y][player2X] = 0;
+                        player2Y++;
+                        players[1].setDy(32);
+                        players[1].move();
                     }
-                    map[player2Y][player2X] = 1;
-                    player2Y--;
-                    map[player2Y][player2X] = 0;
-                    player2Y++;
-                    players[1].setDy(32);
-                    players[1].move();
                 }
                 repaint();
             }
