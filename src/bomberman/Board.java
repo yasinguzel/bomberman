@@ -79,7 +79,7 @@ public class Board extends JPanel
     private void drawObjects(Graphics g)
     {
         //draw game map
-        showMap();
+        //showMap();
         g.drawImage(players[0].getImage(), players[0].getX(), players[0].getY(), this);
         g.drawImage(players[1].getImage(), players[1].getX(), players[1].getY(), this);
 
@@ -138,18 +138,18 @@ public class Board extends JPanel
         Toolkit.getDefaultToolkit().sync();
     }
 
-    private void showMap()
-    {
-        System.out.println("new map");
-        for (int i = 0; i < 15; i++)
-        {
-            for (int j = 0; j < 17; j++)
-            {
-                System.out.print(map[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
+//    private void showMap()
+//    {
+//        System.out.println("new map");
+//        for (int i = 0; i < 15; i++)
+//        {
+//            for (int j = 0; j < 17; j++)
+//            {
+//                System.out.print(map[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
+//    }
 
     private class TAdapter extends KeyAdapter implements ActionListener
     {

@@ -31,7 +31,7 @@ public class Player extends Entity
     public void move(){
             x+=dx;
             y+=dy;
-            System.out.println("PlayerX: "+x+" PlayerY: "+y+"PlayerDx: "+dx+"PlayerDY: "+dy);
+            //System.out.println("PlayerX: "+x+" PlayerY: "+y+"PlayerDx: "+dx+"PlayerDY: "+dy);
             setZero();
     }
     
