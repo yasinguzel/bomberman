@@ -35,6 +35,11 @@ public class Player extends Entity
             setZero();
     }
     
+    public void DropBomb()
+    {
+        
+    }
+    
     public void setDx(int dx){
         this.dx = dx;
     }

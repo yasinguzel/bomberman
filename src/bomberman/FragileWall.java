@@ -11,7 +11,7 @@ package bomberman;
  */
 public class FragileWall extends Walls{
     
-    protected boolean vis;
+    protected boolean vis=true;
     
     public FragileWall(int x, int y) {
         super(x, y);

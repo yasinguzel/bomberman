@@ -18,7 +18,7 @@ public class Bomb extends Entity implements ActionListener
 
     Timer timer;
 
-    public Bomb(int x, int y)
+    Bomb(int x, int y)
     {
         super(x, y);
         InitBomb();
@@ -26,10 +26,12 @@ public class Bomb extends Entity implements ActionListener
 
     private void InitBomb()
     {
-        loadImage("images/walls/nonFragileWall.png");
+        loadImage("images/walls/Bomb1.png");
         getImageDimensions();
         timer = new Timer(500, (ActionListener) this);
     }
+    
+    
 
     @Override
     public void actionPerformed(ActionEvent e)
