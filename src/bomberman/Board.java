@@ -20,15 +20,17 @@ import javax.swing.Timer;
  *
  * @author yasinguzel
  */
-public class Board extends JPanel
+public class Board extends JPanel implements ActionListener
 {
-    //the games takes place in this class.
 
-    Entity[][] entities = new Entity[15][17];//Wall table
+    //the games takes place in this class.
+    Timer timer;
+    public Entity[][] entities = new Entity[15][17];//Wall table
     int map[][] = new int[15][17]; //[satır][sütun]
     private final Player[] players = new Player[2];//Players Array
-    int player1X = 1, player1Y = 1, player2X = 15, player2Y = 13;
+    int player1X = 15, player1Y = 13, player2X = 1, player2Y = 1;
     //List <Bomb> bombs = new ArrayList<Bomb>();
+    int patlamasayac = 0;
 
     public Board()
     {
@@ -40,9 +42,11 @@ public class Board extends JPanel
         addKeyListener(new TAdapter());
         setFocusable(true);
         setDoubleBuffered(true);
-        players[0] = new Player(32, 80);
-        players[1] = new Player(480, 464);
+        players[0] = new Player(480, 464);
+        players[1] = new Player(32, 80);
         drawMap();
+        timer = new Timer(100, (ActionListener) this);
+        timer.start();
     }
 
     int x;
@@ -101,7 +105,8 @@ public class Board extends JPanel
                 } else
                 {
                     map[line][column] = 3;//FragileWall
-                }
+                }//4 = bomb
+                //5 = flame
             }
         }
         map[player1Y][player1X] = 1;
@@ -128,30 +133,89 @@ public class Board extends JPanel
             {
                 x = column * multiplier;
                 y = line * multiplier + scorBoardSpace;
-                if ((line == 0) || (line == 14))
+                if (entities[line][column] != null)
                 {
-                    g.drawImage(entities[line][column].getImage(), x, y, 32, 32, null);
-                } else if ((column % 2 == 0) && (line != 0) && (line != 14) && (line % 2 == 0))
-                {
-                    g.drawImage(entities[line][column].getImage(), x, y, 32, 32, null);
-                } else if ((column == 0) || (column == 16) && (line != 0) && (line != 14) && (line % 2 != 0))
-                {
-                    g.drawImage(entities[line][column].getImage(), x, y, 32, 32, null);
-                } else if ((line == 1) && (column == 1) || (line == 1) && (column == 2) || (line == 1) && (column == 3) || (line == 2) && (column == 1) || (line == 3) && (column == 1))
-                {
-                } else if ((line == 13) && (column == 15) || (line == 13) && (column == 14) || (line == 13) && (column == 13) || (line == 12) && (column == 15) || (line == 11) && (column == 15))
-                {
-                } else if (entities[line][column].isVisible())
-                {
-                    g.drawImage(entities[line][column].getImage(), x, y, 32, 32, null);
-                }
-                if (map[line][column] == 4)
-                {
-                    g.drawImage(entities[line][column].getImage(), x, y, 32, 32, null);
+                    if ((line == 0) || (line == 14))
+                    {
+                        g.drawImage(entities[line][column].getImage(), x, y, 32, 32, null);
+                    } else if ((column % 2 == 0) && (line != 0) && (line != 14) && (line % 2 == 0))
+                    {
+                        g.drawImage(entities[line][column].getImage(), x, y, 32, 32, null);
+                    } else if ((column == 0) || (column == 16) && (line != 0) && (line != 14) && (line % 2 != 0))
+                    {
+                        g.drawImage(entities[line][column].getImage(), x, y, 32, 32, null);
+                    } //                    else if ((line == 1) && (column == 1) || (line == 1) && (column == 2) || (line == 1) && (column == 3) || (line == 2) && (column == 1) || (line == 3) && (column == 1))
+                    //                    {
+                    //     broken         } else if ((line == 13) && (column == 15) || (line == 13) && (column == 14) || (line == 13) && (column == 13) || (line == 12) && (column == 15) || (line == 11) && (column == 15))
+                    //                    {
+                    //                    } 
+                    else if (entities[line][column].isVisible())
+                    {
+                        g.drawImage(entities[line][column].getImage(), x, y, 32, 32, null);
+                    }
+                    if (map[line][column] == 4)
+                    {
+                        if (!entities[line][column].isVisible())
+                        {
+                            for (int i = 1; i <= 2; i++)
+                            {
+                                if (map[line + i][column] == 2)
+                                {
+                                    break;
+                                }
+                                if (map[line + i][column] == 0 || map[line + i][column] == 1 || map[line + i][column] == 3)
+                                {
+                                    map[line + i][column] = 0;
+                                    entities[line + i][column] = new Flame(x, y, FlameDirection.Down);
+                                }
+                            }
+                            for (int i = 0; i <= 2; i++)
+                            {
+                                if (map[line][column + i] == 2)
+                                {
+                                    break;
+                                }
+                                if (map[line][column + i] == 0 || map[line][column + i] == 1 || map[line][column + i] == 3)
+                                {
+                                    map[line][column + i] = 0;
+                                    entities[line][column + i] = new Flame(x, y, FlameDirection.Right);
+                                }
+                            }
+                            for (int i = 0; i <= 2; i++)
+                            {
+                                if (map[line - i][column] == 2)
+                                {
+                                    break;
+                                }
+                                if (map[line - i][column] == 0 || map[line - i][column] == 1 || map[line - i][column] == 3)
+                                {
+                                    map[line - i][column] = 0;
+                                    entities[line - i][column] = new Flame(x, y, FlameDirection.Up);
+                                }
+                            }
+                            for (int i = 0; i <= 2; i++)
+                            {
+
+                                if (map[line][column - i] == 2)
+                                {
+                                    break;
+                                }
+                                if (map[line][column - i] == 0 || map[line][column - i] == 1 || map[line][column - i] == 3)
+                                {
+                                    map[line][column - i] = 0;
+                                    entities[line][column - i] = new Flame(x, y, FlameDirection.Left);
+                                }
+                            }
+                            entities[line][column] = null;
+                            map[line][column] = 0;
+                        } else
+                        {
+                            g.drawImage(entities[line][column].getImage(), x, y, 32, 32, null);
+                        }
+                    }
                 }
             }
         }
-
         Toolkit.getDefaultToolkit().sync();
     }
 
@@ -166,6 +230,12 @@ public class Board extends JPanel
             }
             System.out.println();
         }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        repaint();
     }
 
     private class TAdapter extends KeyAdapter implements ActionListener
@@ -379,7 +449,6 @@ public class Board extends JPanel
 
                     map[player1Y][player1X] = 4;
                     entities[player1Y][player1X] = new Bomb(x, y);
-
                 }
                 repaint();
             }
