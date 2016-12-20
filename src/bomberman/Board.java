@@ -7,6 +7,7 @@ package bomberman;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,12 +38,13 @@ public class Board extends JPanel implements ActionListener
     //List <Bomb> bombs = new ArrayList<Bomb>();
     static AudioContext ac = new AudioContext();
     Color backGroundColor = Color.decode("#55A704");
+    Image background;
+
 
 
     public Board()
     {
         initBoard();
-        setBackground(backGroundColor);
     }
 
     private void initBoard()
@@ -50,12 +52,13 @@ public class Board extends JPanel implements ActionListener
         addKeyListener(new TAdapter());
         setFocusable(true);
         setDoubleBuffered(true);
-        players[0] = new Player(480, 464);
-        players[1] = new Player(32, 80);
+        players[0] = new Player(480, 464-32);
+        players[1] = new Player(32, 80-32);
         drawMap();
         timer = new Timer(100, (ActionListener) this);
         timer.start();
         playBackgroundSound();
+        backgroundPanel();
     }
 
     int x;
@@ -63,6 +66,13 @@ public class Board extends JPanel implements ActionListener
     int multiplier = 32;
     int scorBoardSpace = 48;
 
+    public void backgroundPanel()
+    {
+        // Loads the background image and stores in background object.
+        background = Toolkit.getDefaultToolkit().createImage("images/walls/background.png");
+    }
+    
+    
     public static void playBackgroundSound()
     {
         try
@@ -148,9 +158,9 @@ public class Board extends JPanel implements ActionListener
     private void drawObjects(Graphics g)
     {
         //draw game map
+        g.drawImage(background, 0, 0, null);//background image   
         showMap();
-        g.drawImage(players[0].getImage(), players[0].getX(), players[0].getY(), 32, 32, this);
-        g.drawImage(players[1].getImage(), players[1].getX(), players[1].getY(), 32, 32, this);
+
 
         for (int line = 0; line < 15; line++)
         {
@@ -242,6 +252,8 @@ public class Board extends JPanel implements ActionListener
                 }
             }
         }
+        g.drawImage(players[0].getImage(), players[0].getX(), players[0].getY(), 32, 64, this);
+        g.drawImage(players[1].getImage(), players[1].getX(), players[1].getY(), 32, 64, this);
         Toolkit.getDefaultToolkit().sync();
     }
 
