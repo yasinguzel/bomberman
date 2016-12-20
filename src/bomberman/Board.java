@@ -40,8 +40,6 @@ public class Board extends JPanel implements ActionListener
     Color backGroundColor = Color.decode("#55A704");
     Image background;
 
-
-
     public Board()
     {
         initBoard();
@@ -52,8 +50,8 @@ public class Board extends JPanel implements ActionListener
         addKeyListener(new TAdapter());
         setFocusable(true);
         setDoubleBuffered(true);
-        players[0] = new Player(480, 464-32);
-        players[1] = new Player(32, 80-32);
+        players[0] = new Player(480, 464 - 32);
+        players[1] = new Player(32, 80 - 32);
         drawMap();
         timer = new Timer(100, (ActionListener) this);
         timer.start();
@@ -71,8 +69,7 @@ public class Board extends JPanel implements ActionListener
         // Loads the background image and stores in background object.
         background = Toolkit.getDefaultToolkit().createImage("images/walls/background.png");
     }
-    
-    
+
     public static void playBackgroundSound()
     {
         try
@@ -160,7 +157,6 @@ public class Board extends JPanel implements ActionListener
         //draw game map
         g.drawImage(background, 0, 0, null);//background image   
         showMap();
-
 
         for (int line = 0; line < 15; line++)
         {
@@ -252,8 +248,16 @@ public class Board extends JPanel implements ActionListener
                 }
             }
         }
-        g.drawImage(players[0].getImage(), players[0].getX(), players[0].getY(), 32, 64, this);
-        g.drawImage(players[1].getImage(), players[1].getX(), players[1].getY(), 32, 64, this);
+        if (players[0].getY() <= players[1].getY())
+        {
+
+            g.drawImage(players[0].getImage(), players[0].getX(), players[0].getY(), 32, 64, this);
+            g.drawImage(players[1].getImage(), players[1].getX(), players[1].getY(), 32, 64, this);
+        } else
+        {
+            g.drawImage(players[1].getImage(), players[1].getX(), players[1].getY(), 32, 64, this);
+            g.drawImage(players[0].getImage(), players[0].getX(), players[0].getY(), 32, 64, this);
+        }
         Toolkit.getDefaultToolkit().sync();
     }
 
