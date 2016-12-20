@@ -11,15 +11,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JOptionPane;
-//import java.util.ArrayList;
-//import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import net.beadsproject.beads.core.AudioContext;
+import net.beadsproject.beads.data.SampleManager;
+import net.beadsproject.beads.ugens.Gain;
+import net.beadsproject.beads.ugens.SamplePlayer;
 
 /**
  *
@@ -35,7 +34,7 @@ public class Board extends JPanel implements ActionListener
     private final Player[] players = new Player[2];//Players Array
     int player1X = 15, player1Y = 13, player2X = 1, player2Y = 1;
     //List <Bomb> bombs = new ArrayList<Bomb>();
-    int patlamasayac = 0;
+    static AudioContext ac = new AudioContext();
 
     public Board()
     {
@@ -62,21 +61,20 @@ public class Board extends JPanel implements ActionListener
 
     public static void playBackgroundSound()
     {
-           Clip clip;
-           try 
-           {
-                   AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("audio/bombermanMusic.wav").getAbsoluteFile( ));
-                   clip = AudioSystem.getClip( );
-                   clip.open(audioInputStream);
-                   clip.start();
-           }
-           catch(Exception ex)
-           {
-                   JOptionPane.showMessageDialog(null, "Error with playing sound.");
-                   ex.printStackTrace( );
-           }
+        try
+        {
+            String audioFile = "audio/bombermanMusic.wav";
+            SamplePlayer player = new SamplePlayer(ac, SampleManager.sample(audioFile));
+            Gain g = new Gain(ac, 2, 1f);
+            g.addInput(player);
+            ac.out.addInput(g);
+            ac.start();
+        } catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error with playing sound.");
+        }
     }
-    
+
     private void drawMap()
     {
 
@@ -264,19 +262,18 @@ public class Board extends JPanel implements ActionListener
 
     private void bombSound()
     {
-        Clip clip;
-           try 
-           {
-                   AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("audio/explosion.wav").getAbsoluteFile( ));
-                   clip = AudioSystem.getClip( );
-                   clip.open(audioInputStream);
-                   clip.start();
-           }
-           catch(Exception ex)
-           {
-                   JOptionPane.showMessageDialog(null, "Error with playing sound.");
-                   ex.printStackTrace( );
-           }
+        try
+        {
+            String audioFile = "audio/explosion.wav";
+            SamplePlayer player = new SamplePlayer(ac, SampleManager.sample(audioFile));
+            Gain g = new Gain(ac, 2, 1f);
+            g.addInput(player);
+            ac.out.addInput(g);
+            ac.start();
+        } catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error with playing sound.");
+        }
     }
 
     private class TAdapter extends KeyAdapter implements ActionListener
@@ -500,19 +497,19 @@ public class Board extends JPanel implements ActionListener
 
         private void bombPutSound()
         {
-           Clip clip;
-           try 
-           {
-                   AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("audio/bombPutted.wav").getAbsoluteFile( ));
-                   clip = AudioSystem.getClip( );
-                   clip.open(audioInputStream);
-                   clip.start();
-           }
-           catch(Exception ex)
-           {
-                   JOptionPane.showMessageDialog(null, "Error with playing sound.");
-                   ex.printStackTrace( );
-           }
+            Clip clip;
+            try
+            {
+                String audioFile = "audio/bombPutted.wav";
+                SamplePlayer player = new SamplePlayer(ac, SampleManager.sample(audioFile));
+                Gain g = new Gain(ac, 2, 1f);
+                g.addInput(player);
+                ac.out.addInput(g);
+                ac.start();
+            } catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Error with playing sound.");
+            }
         }
     }
 
