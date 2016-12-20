@@ -5,7 +5,6 @@
  */
 package bomberman;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 
@@ -22,9 +21,7 @@ public class Application extends JFrame{
     private void initUI() {
         add(new Board());
         setSize(544,550);
-        
         setTitle("Bomberman");
-        setBackground(new Color(46,204,113));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);

@@ -5,6 +5,7 @@
  */
 package bomberman;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -35,10 +36,13 @@ public class Board extends JPanel implements ActionListener
     int player1X = 15, player1Y = 13, player2X = 1, player2Y = 1;
     //List <Bomb> bombs = new ArrayList<Bomb>();
     static AudioContext ac = new AudioContext();
+    Color backGroundColor = Color.decode("#55A704");
+
 
     public Board()
     {
         initBoard();
+        setBackground(backGroundColor);
     }
 
     private void initBoard()
@@ -63,9 +67,9 @@ public class Board extends JPanel implements ActionListener
     {
         try
         {
-            String audioFile = "audio/bombermanMusic.wav";
+            String audioFile = "audio/bombermanMusic.mp3";
             SamplePlayer player = new SamplePlayer(ac, SampleManager.sample(audioFile));
-            Gain g = new Gain(ac, 2, 1f);
+            Gain g = new Gain(ac, 2, 2f);
             g.addInput(player);
             ac.out.addInput(g);
             ac.start();
@@ -266,7 +270,7 @@ public class Board extends JPanel implements ActionListener
         {
             String audioFile = "audio/explosion.wav";
             SamplePlayer player = new SamplePlayer(ac, SampleManager.sample(audioFile));
-            Gain g = new Gain(ac, 2, 1f);
+            Gain g = new Gain(ac, 2, 0.5f);
             g.addInput(player);
             ac.out.addInput(g);
             ac.start();
@@ -502,7 +506,7 @@ public class Board extends JPanel implements ActionListener
             {
                 String audioFile = "audio/bombPutted.wav";
                 SamplePlayer player = new SamplePlayer(ac, SampleManager.sample(audioFile));
-                Gain g = new Gain(ac, 2, 1f);
+                Gain g = new Gain(ac, 2, 0.1f);
                 g.addInput(player);
                 ac.out.addInput(g);
                 ac.start();
