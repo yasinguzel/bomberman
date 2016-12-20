@@ -11,6 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.JOptionPane;
 //import java.util.ArrayList;
 //import java.util.List;
 import javax.swing.JPanel;
@@ -47,6 +52,7 @@ public class Board extends JPanel implements ActionListener
         drawMap();
         timer = new Timer(100, (ActionListener) this);
         timer.start();
+        playBackgroundSound();
     }
 
     int x;
@@ -54,6 +60,23 @@ public class Board extends JPanel implements ActionListener
     int multiplier = 32;
     int scorBoardSpace = 48;
 
+    public static void playBackgroundSound()
+    {
+           Clip clip;
+           try 
+           {
+                   AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("audio/bombermanMusic.wav").getAbsoluteFile( ));
+                   clip = AudioSystem.getClip( );
+                   clip.open(audioInputStream);
+                   clip.start();
+           }
+           catch(Exception ex)
+           {
+                   JOptionPane.showMessageDialog(null, "Error with playing sound.");
+                   ex.printStackTrace( );
+           }
+    }
+    
     private void drawMap()
     {
 
@@ -157,6 +180,7 @@ public class Board extends JPanel implements ActionListener
                     {
                         if (!entities[line][column].isVisible())
                         {
+                            bombSound();
                             for (int i = 1; i <= 2; i++)
                             {
                                 if (map[line + i][column] == 2)
@@ -236,6 +260,23 @@ public class Board extends JPanel implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         repaint();
+    }
+
+    private void bombSound()
+    {
+        Clip clip;
+           try 
+           {
+                   AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("audio/explosion.wav").getAbsoluteFile( ));
+                   clip = AudioSystem.getClip( );
+                   clip.open(audioInputStream);
+                   clip.start();
+           }
+           catch(Exception ex)
+           {
+                   JOptionPane.showMessageDialog(null, "Error with playing sound.");
+                   ex.printStackTrace( );
+           }
     }
 
     private class TAdapter extends KeyAdapter implements ActionListener
@@ -441,6 +482,7 @@ public class Board extends JPanel implements ActionListener
 
                     map[player2Y][player2X] = 4;
                     entities[player2Y][player2X] = new Bomb(x, y);
+                    bombPutSound();
                 }
                 if (key == KeyEvent.VK_SPACE)//player1
                 {
@@ -449,10 +491,28 @@ public class Board extends JPanel implements ActionListener
 
                     map[player1Y][player1X] = 4;
                     entities[player1Y][player1X] = new Bomb(x, y);
+                    bombPutSound();
                 }
                 repaint();
             }
 
+        }
+
+        private void bombPutSound()
+        {
+           Clip clip;
+           try 
+           {
+                   AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("audio/bombPutted.wav").getAbsoluteFile( ));
+                   clip = AudioSystem.getClip( );
+                   clip.open(audioInputStream);
+                   clip.start();
+           }
+           catch(Exception ex)
+           {
+                   JOptionPane.showMessageDialog(null, "Error with playing sound.");
+                   ex.printStackTrace( );
+           }
         }
     }
 
