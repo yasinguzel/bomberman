@@ -20,8 +20,8 @@ public class Entity {
     protected int width;
     protected int height;
     protected Image image;
-    protected boolean vis;
-    
+    protected boolean vis;    
+    int owner;
     public Entity(int x,int y){
         this.x = x;
         this.y = y;

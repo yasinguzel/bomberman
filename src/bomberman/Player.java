@@ -14,6 +14,7 @@ public class Player extends Entity
 {
     private int dx;
     private int dy;
+    int bombCount=3;
     
     public Player(int x, int y)
     {
@@ -33,11 +34,6 @@ public class Player extends Entity
             y+=dy;
             //System.out.println("PlayerX: "+x+" PlayerY: "+y+"PlayerDx: "+dx+"PlayerDY: "+dy);
             setZero();
-    }
-    
-    public void DropBomb()
-    {
-        
     }
     
     public void setDx(int dx){

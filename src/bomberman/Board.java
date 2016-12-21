@@ -51,8 +51,8 @@ public class Board extends JPanel implements ActionListener
         addKeyListener(new TAdapter());
         setFocusable(true);
         setDoubleBuffered(true);
-        players[0] = new Player(480, 464 - 32);
-        players[1] = new Player(32, 80 - 32);
+        players[0] = new Player(480, 464 - 32);//col:15 line:12
+        players[1] = new Player(32, 80 - 32);//col:1 line:1
         drawMap();
         timer = new Timer(100, (ActionListener) this);
         timer.start();
@@ -146,7 +146,6 @@ public class Board extends JPanel implements ActionListener
         }
         map[player1Y][player1X] = 1;
         map[player2Y][player2X] = 6;
-
     }
 
     @Override
@@ -190,6 +189,14 @@ public class Board extends JPanel implements ActionListener
                     {
                         if (!entities[line][column].isVisible())
                         {
+                            if (entities[line][column].owner == 0)
+                            {
+                                players[0].bombCount++;
+                            }
+                            if (entities[line][column].owner == 1)
+                            {
+                                players[1].bombCount++;
+                            }
                             bombSound();
                             for (int i = 1; i <= 2; i++)
                             {
@@ -376,6 +383,36 @@ public class Board extends JPanel implements ActionListener
                                     });
                                 }
                             }
+
+                            if (player1X == column && player1Y == line)
+                            {
+                                entities[line][column] = new Flame(x, y, FlameDirection.Up);
+                                timer.stop();
+                                SwingUtilities.invokeLater(new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        JOptionPane.showMessageDialog(null, "Player 2 wins");
+                                        System.exit(0);
+                                    }
+                                });
+                            }
+                            if (player2X == column && player2Y == line)
+                            {
+                                entities[line][column] = new Flame(x, y, FlameDirection.Up);
+                                timer.stop();
+                                SwingUtilities.invokeLater(new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        JOptionPane.showMessageDialog(null, "Player 1 wins");
+                                        System.exit(0);
+                                    }
+                                });
+                            }
+
                             entities[line][column] = null;
                             map[line][column] = 0;
                         } else
@@ -621,23 +658,35 @@ public class Board extends JPanel implements ActionListener
                     }
                 }
 
-                if (key == KeyEvent.VK_CONTROL)//player 2
+                if (key == KeyEvent.VK_SPACE)//player 2
                 {
-                    x = player2X * multiplier;
-                    y = player2Y * multiplier + scorBoardSpace;
+                    if (players[1].bombCount != 0 && map[player1Y][player1X] != 4)
+                    {
+                        x = player2X * multiplier;
+                        y = player2Y * multiplier + scorBoardSpace;
 
-                    map[player2Y][player2X] = 4;
-                    entities[player2Y][player2X] = new Bomb(x, y);
-                    bombPutSound();
+                        map[player2Y][player2X] = 4;
+                        Bomb bomb = new Bomb(x, y);
+                        bomb.owner = 1;
+                        entities[player2Y][player2X] = bomb;
+                        bombPutSound();
+                        players[1].bombCount--;
+                    }
                 }
-                if (key == KeyEvent.VK_SPACE)//player 1
+                if (key == KeyEvent.VK_L)//player 1
                 {
-                    x = player1X * multiplier;
-                    y = player1Y * multiplier + scorBoardSpace;
+                    if (players[0].bombCount != 0 && map[player1Y][player1X] != 4)
+                    {
+                        x = player1X * multiplier;
+                        y = player1Y * multiplier + scorBoardSpace;
 
-                    map[player1Y][player1X] = 4;
-                    entities[player1Y][player1X] = new Bomb(x, y);
-                    bombPutSound();
+                        map[player1Y][player1X] = 4;
+                        Bomb bomb = new Bomb(x, y);
+                        bomb.owner = 0;
+                        entities[player1Y][player1X] = bomb;
+                        bombPutSound();
+                        players[0].bombCount--;
+                    }
                 }
                 repaint();
             }
