@@ -197,6 +197,17 @@ public class Board extends JPanel implements ActionListener
                                 {
                                     break;
                                 }
+                                if (map[line + i][column] == 3)
+                                {
+                                    map[line + i][column] = 0;
+                                    entities[line + i][column] = new Flame(x, y, FlameDirection.Down);
+                                    break;
+                                }
+                                if (map[line + i][column] == 0)
+                                {
+                                    map[line + i][column] = 0;
+                                    entities[line + i][column] = new Flame(x, y, FlameDirection.Down);
+                                }
                                 if (map[line + i][column] == 1)
                                 {
                                     entities[line + i][column] = new Flame(x, y, FlameDirection.Down);
@@ -207,6 +218,7 @@ public class Board extends JPanel implements ActionListener
                                         public void run()
                                         {
                                             JOptionPane.showMessageDialog(null, "Player 2 wins");
+                                            System.exit(0);
                                         }
                                     });
                                 }
@@ -220,27 +232,27 @@ public class Board extends JPanel implements ActionListener
                                         public void run()
                                         {
                                             JOptionPane.showMessageDialog(null, "Player 1 wins");
+                                            System.exit(0);
                                         }
                                     });
                                 }
-                                if (map[line + i][column] == 3)
-                                {
-                                    map[line + i][column] = 0;
-                                    entities[line + i][column] = new Flame(x, y, FlameDirection.Down);
-                                    break;
-                                }
-                                if (map[line + i][column] == 0)
-                                {
-                                    map[line + i][column] = 0;
-                                    entities[line + i][column] = new Flame(x, y, FlameDirection.Down);
-                                }
-
                             }
                             for (int i = 0; i <= 2; i++)
                             {
                                 if (map[line][column + i] == 2)
                                 {
                                     break;
+                                }
+                                if (map[line][column + i] == 3)
+                                {
+                                    map[line][column + i] = 0;
+                                    entities[line][column + i] = new Flame(x, y, FlameDirection.Right);
+                                    break;
+                                }
+                                if (map[line][column + i] == 0)
+                                {
+                                    map[line][column + i] = 0;
+                                    entities[line][column + i] = new Flame(x, y, FlameDirection.Right);
                                 }
                                 if (map[line][column + i] == 1)
                                 {
@@ -252,6 +264,7 @@ public class Board extends JPanel implements ActionListener
                                         public void run()
                                         {
                                             JOptionPane.showMessageDialog(null, "Player 2 wins");
+                                            System.exit(0);
                                         }
                                     });
                                 }
@@ -266,29 +279,27 @@ public class Board extends JPanel implements ActionListener
                                         public void run()
                                         {
                                             JOptionPane.showMessageDialog(null, "Player 1 wins");
+                                            System.exit(0);
                                         }
                                     });
                                 }
-                                if (map[line][column + i] == 3)
-                                {
-
-                                    map[line][column + i] = 0;
-                                    entities[line][column + i] = new Flame(x, y, FlameDirection.Right);
-                                    break;
-                                }
-                                if (map[line][column + i] == 0)
-                                {
-
-                                    map[line][column + i] = 0;
-                                    entities[line][column + i] = new Flame(x, y, FlameDirection.Right);
-                                }
-
                             }
                             for (int i = 0; i <= 2; i++)
                             {
                                 if (map[line - i][column] == 2)
                                 {
                                     break;
+                                }
+                                if (map[line - i][column] == 3)
+                                {
+                                    map[line - i][column] = 0;
+                                    entities[line - i][column] = new Flame(x, y, FlameDirection.Up);
+                                    break;
+                                }
+                                if (map[line - i][column] == 0)
+                                {
+                                    map[line - i][column] = 0;
+                                    entities[line - i][column] = new Flame(x, y, FlameDirection.Up);
                                 }
                                 if (map[line - i][column] == 1)
                                 {
@@ -300,6 +311,7 @@ public class Board extends JPanel implements ActionListener
                                         public void run()
                                         {
                                             JOptionPane.showMessageDialog(null, "Player 2 wins");
+                                            System.exit(0);
                                         }
                                     });
                                 }
@@ -313,28 +325,27 @@ public class Board extends JPanel implements ActionListener
                                         public void run()
                                         {
                                             JOptionPane.showMessageDialog(null, "Player 1 wins");
+                                            System.exit(0);
                                         }
                                     });
                                 }
-                                if (map[line - i][column] == 3)
-                                {
-                                    map[line - i][column] = 0;
-                                    entities[line - i][column] = new Flame(x, y, FlameDirection.Up);
-                                    break;
-                                }
-                                if (map[line - i][column] == 0)
-                                {
-                                    map[line - i][column] = 0;
-                                    entities[line - i][column] = new Flame(x, y, FlameDirection.Up);
-                                }
-
                             }
                             for (int i = 0; i <= 2; i++)
                             {
-
                                 if (map[line][column - i] == 2)
                                 {
                                     break;
+                                }
+                                if (map[line][column - i] == 3)
+                                {
+                                    map[line][column - i] = 0;
+                                    entities[line][column - i] = new Flame(x, y, FlameDirection.Left);
+                                    break;
+                                }
+                                if (map[line][column - i] == 0)
+                                {
+                                    map[line][column - i] = 0;
+                                    entities[line][column - i] = new Flame(x, y, FlameDirection.Left);
                                 }
                                 if (map[line][column - i] == 1)
                                 {
@@ -346,6 +357,7 @@ public class Board extends JPanel implements ActionListener
                                         public void run()
                                         {
                                             JOptionPane.showMessageDialog(null, "Player 2 wins");
+                                            System.exit(0);
                                         }
                                     });
                                 }
@@ -359,22 +371,11 @@ public class Board extends JPanel implements ActionListener
                                         public void run()
                                         {
                                             JOptionPane.showMessageDialog(null, "Player 1 wins");
+                                            System.exit(0);
                                         }
                                     });
                                 }
-                                if (map[line][column - i] == 3)
-                                {
-                                    map[line][column - i] = 0;
-                                    entities[line][column - i] = new Flame(x, y, FlameDirection.Left);
-                                    break;
-                                }
-                                if (map[line][column - i] == 0)
-                                {
-                                    map[line][column - i] = 0;
-                                    entities[line][column - i] = new Flame(x, y, FlameDirection.Left);
-                                }
                             }
-
                             entities[line][column] = null;
                             map[line][column] = 0;
                         } else
@@ -460,7 +461,7 @@ public class Board extends JPanel implements ActionListener
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            
+
             for (int key : listener.GetKeys())
             {
                 if (key == KeyEvent.VK_LEFT)
