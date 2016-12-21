@@ -16,6 +16,7 @@ import java.awt.event.KeyEvent;
 import javax.sound.sampled.Clip;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import net.beadsproject.beads.core.AudioContext;
 import net.beadsproject.beads.data.SampleManager;
@@ -119,6 +120,8 @@ public class Board extends JPanel implements ActionListener
         {
             for (int column = 0; column < 17; column++)
             {
+                //1 =player 1
+                //6 = player 2
                 if ((line == 0) || (line == 14))
                 {
                     map[line][column] = 2;//NonFragileWall
@@ -142,14 +145,18 @@ public class Board extends JPanel implements ActionListener
             }
         }
         map[player1Y][player1X] = 1;
-        map[player2Y][player2X] = 1;
+        map[player2Y][player2X] = 6;
+
     }
 
     @Override
     public void paintComponent(Graphics g)
     {
-        super.paintComponent(g);
-        drawObjects(g);
+        if (timer.isRunning())
+        {
+            super.paintComponent(g);
+            drawObjects(g);
+        }
     }
 
     private void drawObjects(Graphics g)
@@ -175,12 +182,7 @@ public class Board extends JPanel implements ActionListener
                     } else if ((column == 0) || (column == 16) && (line != 0) && (line != 14) && (line % 2 != 0))
                     {
                         g.drawImage(entities[line][column].getImage(), x, y, 32, 32, null);
-                    } //                    else if ((line == 1) && (column == 1) || (line == 1) && (column == 2) || (line == 1) && (column == 3) || (line == 2) && (column == 1) || (line == 3) && (column == 1))
-                    //                    {
-                    //     broken         } else if ((line == 13) && (column == 15) || (line == 13) && (column == 14) || (line == 13) && (column == 13) || (line == 12) && (column == 15) || (line == 11) && (column == 15))
-                    //                    {
-                    //                    } 
-                    else if (entities[line][column].isVisible())
+                    } else if (entities[line][column].isVisible())
                     {
                         g.drawImage(entities[line][column].getImage(), x, y, 32, 32, null);
                     }
@@ -195,11 +197,44 @@ public class Board extends JPanel implements ActionListener
                                 {
                                     break;
                                 }
-                                if (map[line + i][column] == 0 || map[line + i][column] == 1 || map[line + i][column] == 3)
+                                if (map[line + i][column] == 1)
+                                {
+                                    entities[line + i][column] = new Flame(x, y, FlameDirection.Down);
+                                    timer.stop();
+                                    SwingUtilities.invokeLater(new Runnable()
+                                    {
+                                        @Override
+                                        public void run()
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Player 2 wins");
+                                        }
+                                    });
+                                }
+                                if (map[line + i][column] == 6)
+                                {
+                                    entities[line + i][column] = new Flame(x, y, FlameDirection.Down);
+                                    timer.stop();
+                                    SwingUtilities.invokeLater(new Runnable()
+                                    {
+                                        @Override
+                                        public void run()
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Player 1 wins");
+                                        }
+                                    });
+                                }
+                                if (map[line + i][column] == 3)
+                                {
+                                    map[line + i][column] = 0;
+                                    entities[line + i][column] = new Flame(x, y, FlameDirection.Down);
+                                    break;
+                                }
+                                if (map[line + i][column] == 0)
                                 {
                                     map[line + i][column] = 0;
                                     entities[line + i][column] = new Flame(x, y, FlameDirection.Down);
                                 }
+
                             }
                             for (int i = 0; i <= 2; i++)
                             {
@@ -207,11 +242,47 @@ public class Board extends JPanel implements ActionListener
                                 {
                                     break;
                                 }
-                                if (map[line][column + i] == 0 || map[line][column + i] == 1 || map[line][column + i] == 3)
+                                if (map[line][column + i] == 1)
+                                {
+                                    entities[line][column + i] = new Flame(x, y, FlameDirection.Right);
+                                    timer.stop();
+                                    SwingUtilities.invokeLater(new Runnable()
+                                    {
+                                        @Override
+                                        public void run()
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Player 2 wins");
+                                        }
+                                    });
+                                }
+                                if (map[line][column + i] == 6)
                                 {
                                     map[line][column + i] = 0;
                                     entities[line][column + i] = new Flame(x, y, FlameDirection.Right);
+                                    timer.stop();
+                                    SwingUtilities.invokeLater(new Runnable()
+                                    {
+                                        @Override
+                                        public void run()
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Player 1 wins");
+                                        }
+                                    });
                                 }
+                                if (map[line][column + i] == 3)
+                                {
+
+                                    map[line][column + i] = 0;
+                                    entities[line][column + i] = new Flame(x, y, FlameDirection.Right);
+                                    break;
+                                }
+                                if (map[line][column + i] == 0)
+                                {
+
+                                    map[line][column + i] = 0;
+                                    entities[line][column + i] = new Flame(x, y, FlameDirection.Right);
+                                }
+
                             }
                             for (int i = 0; i <= 2; i++)
                             {
@@ -219,11 +290,44 @@ public class Board extends JPanel implements ActionListener
                                 {
                                     break;
                                 }
-                                if (map[line - i][column] == 0 || map[line - i][column] == 1 || map[line - i][column] == 3)
+                                if (map[line - i][column] == 1)
+                                {
+                                    entities[line - i][column] = new Flame(x, y, FlameDirection.Up);
+                                    timer.stop();
+                                    SwingUtilities.invokeLater(new Runnable()
+                                    {
+                                        @Override
+                                        public void run()
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Player 2 wins");
+                                        }
+                                    });
+                                }
+                                if (map[line - i][column] == 6)
+                                {
+                                    entities[line - i][column] = new Flame(x, y, FlameDirection.Up);
+                                    timer.stop();
+                                    SwingUtilities.invokeLater(new Runnable()
+                                    {
+                                        @Override
+                                        public void run()
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Player 1 wins");
+                                        }
+                                    });
+                                }
+                                if (map[line - i][column] == 3)
+                                {
+                                    map[line - i][column] = 0;
+                                    entities[line - i][column] = new Flame(x, y, FlameDirection.Up);
+                                    break;
+                                }
+                                if (map[line - i][column] == 0)
                                 {
                                     map[line - i][column] = 0;
                                     entities[line - i][column] = new Flame(x, y, FlameDirection.Up);
                                 }
+
                             }
                             for (int i = 0; i <= 2; i++)
                             {
@@ -232,12 +336,45 @@ public class Board extends JPanel implements ActionListener
                                 {
                                     break;
                                 }
-                                if (map[line][column - i] == 0 || map[line][column - i] == 1 || map[line][column - i] == 3)
+                                if (map[line][column - i] == 1)
+                                {
+                                    entities[line][column - i] = new Flame(x, y, FlameDirection.Left);
+                                    timer.stop();
+                                    SwingUtilities.invokeLater(new Runnable()
+                                    {
+                                        @Override
+                                        public void run()
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Player 2 wins");
+                                        }
+                                    });
+                                }
+                                if (map[line][column - i] == 6)
+                                {
+                                    entities[line][column - i] = new Flame(x, y, FlameDirection.Left);
+                                    timer.stop();
+                                    SwingUtilities.invokeLater(new Runnable()
+                                    {
+                                        @Override
+                                        public void run()
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Player 1 wins");
+                                        }
+                                    });
+                                }
+                                if (map[line][column - i] == 3)
+                                {
+                                    map[line][column - i] = 0;
+                                    entities[line][column - i] = new Flame(x, y, FlameDirection.Left);
+                                    break;
+                                }
+                                if (map[line][column - i] == 0)
                                 {
                                     map[line][column - i] = 0;
                                     entities[line][column - i] = new Flame(x, y, FlameDirection.Left);
                                 }
                             }
+
                             entities[line][column] = null;
                             map[line][column] = 0;
                         } else
@@ -250,7 +387,6 @@ public class Board extends JPanel implements ActionListener
         }
         if (players[0].getY() <= players[1].getY())
         {
-
             g.drawImage(players[0].getImage(), players[0].getX(), players[0].getY(), 32, 64, this);
             g.drawImage(players[1].getImage(), players[1].getX(), players[1].getY(), 32, 64, this);
         } else
@@ -299,7 +435,7 @@ public class Board extends JPanel implements ActionListener
     private class TAdapter extends KeyAdapter implements ActionListener
     {
 
-        Timer timer;
+        public Timer timer;
 
         public TAdapter()
         {
@@ -324,12 +460,13 @@ public class Board extends JPanel implements ActionListener
         @Override
         public void actionPerformed(ActionEvent e)
         {
+            
             for (int key : listener.GetKeys())
             {
                 if (key == KeyEvent.VK_LEFT)
                 {
                     player1X--;
-                    if (map[player1Y][player1X] != 1 && map[player1Y][player1X] != 0)
+                    if (map[player1Y][player1X] != 0)
                     {
                         player1X++;
 
@@ -349,12 +486,11 @@ public class Board extends JPanel implements ActionListener
                 if (key == KeyEvent.VK_RIGHT)
                 {
                     player1X++;
-                    if (map[player1Y][player1X] != 1 && map[player1Y][player1X] != 0)
+                    if (map[player1Y][player1X] != 0)
                     {
                         player1X--;
                     } else
                     {
-
                         map[player1Y][player1X] = 1;
                         player1X--;
                         if (map[player1Y][player1X] != 4)
@@ -369,10 +505,9 @@ public class Board extends JPanel implements ActionListener
                 if (key == KeyEvent.VK_UP)
                 {
                     player1Y--;
-                    if (map[player1Y][player1X] != 1 && map[player1Y][player1X] != 0)
+                    if (map[player1Y][player1X] != 0)
                     {
                         player1Y++;
-
                     } else
                     {
                         map[player1Y][player1X] = 1;
@@ -391,12 +526,11 @@ public class Board extends JPanel implements ActionListener
                 if (key == KeyEvent.VK_DOWN)
                 {
                     player1Y++;
-                    if (map[player1Y][player1X] != 1 && map[player1Y][player1X] != 0)
+                    if (map[player1Y][player1X] != 0)
                     {
                         player1Y--;
                     } else
                     {
-
                         map[player1Y][player1X] = 1;
                         player1Y--;
                         if (map[player1Y][player1X] != 4)
@@ -411,13 +545,12 @@ public class Board extends JPanel implements ActionListener
                 if (key == KeyEvent.VK_A)
                 {
                     player2X--;
-                    if (map[player2Y][player2X] != 1 && map[player2Y][player2X] != 0)
+                    if (map[player2Y][player2X] != 0)
                     {
                         player2X++;
                     } else
                     {
-
-                        map[player2Y][player2X] = 1;
+                        map[player2Y][player2X] = 6;
                         player2X++;
                         if (map[player2Y][player2X] != 4)
                         {
@@ -431,14 +564,12 @@ public class Board extends JPanel implements ActionListener
                 if (key == KeyEvent.VK_D)
                 {
                     player2X++;
-                    if (map[player2Y][player2X] != 1 && map[player2Y][player2X] != 0)
+                    if (map[player2Y][player2X] != 0)
                     {
                         player2X--;
-
                     } else
                     {
-
-                        map[player2Y][player2X] = 1;
+                        map[player2Y][player2X] = 6;
                         player2X--;
                         if (map[player2Y][player2X] != 4)
                         {
@@ -452,14 +583,12 @@ public class Board extends JPanel implements ActionListener
                 if (key == KeyEvent.VK_W)
                 {
                     player2Y--;
-                    if (map[player2Y][player2X] != 1 && map[player2Y][player2X] != 0)
+                    if (map[player2Y][player2X] != 0)
                     {
                         player2Y++;
-
                     } else
                     {
-
-                        map[player2Y][player2X] = 1;
+                        map[player2Y][player2X] = 6;
                         player2Y++;
                         if (map[player2Y][player2X] != 4)
                         {
@@ -474,13 +603,12 @@ public class Board extends JPanel implements ActionListener
                 if (key == KeyEvent.VK_S)
                 {
                     player2Y++;
-                    if (map[player2Y][player2X] != 1 && map[player2Y][player2X] != 0)
+                    if (map[player2Y][player2X] != 0)
                     {
                         player2Y--;
                     } else
                     {
-
-                        map[player2Y][player2X] = 1;
+                        map[player2Y][player2X] = 6;
                         player2Y--;
                         if (map[player2Y][player2X] != 4)
                         {
@@ -492,7 +620,7 @@ public class Board extends JPanel implements ActionListener
                     }
                 }
 
-                if (key == KeyEvent.VK_CONTROL)//player2
+                if (key == KeyEvent.VK_CONTROL)//player 2
                 {
                     x = player2X * multiplier;
                     y = player2Y * multiplier + scorBoardSpace;
@@ -501,7 +629,7 @@ public class Board extends JPanel implements ActionListener
                     entities[player2Y][player2X] = new Bomb(x, y);
                     bombPutSound();
                 }
-                if (key == KeyEvent.VK_SPACE)//player1
+                if (key == KeyEvent.VK_SPACE)//player 1
                 {
                     x = player1X * multiplier;
                     y = player1Y * multiplier + scorBoardSpace;
@@ -512,7 +640,6 @@ public class Board extends JPanel implements ActionListener
                 }
                 repaint();
             }
-
         }
 
         private void bombPutSound()
