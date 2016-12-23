@@ -32,11 +32,6 @@ public class Entity {
         image = ii.getImage();
     }
     
-    protected void getImageDimensions(){
-        width = image.getWidth(null);
-        height = image.getHeight(null);
-    }
-    
     public Image getImage(){
         return image;
     }

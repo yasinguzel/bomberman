@@ -18,7 +18,6 @@ public class NonFragileWall extends Walls {
 
     private void initNonFragileWall() {
         loadImage("images/walls/nonFragileWall.png");
-        getImageDimensions();
     }
 
     

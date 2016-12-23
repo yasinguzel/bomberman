@@ -28,7 +28,6 @@ public class Bomb extends Entity implements ActionListener
     {
         vis = true;
         loadImage("images/walls/Bomb1.png");
-        getImageDimensions();
         timer = new Timer(1000, (ActionListener) this);
         timer.start();
     }

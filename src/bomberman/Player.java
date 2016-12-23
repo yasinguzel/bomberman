@@ -19,14 +19,6 @@ public class Player extends Entity
     public Player(int x, int y)
     {
         super(x, y);
-        InitPlayer();
-    }
-
-
-    private void InitPlayer()
-    {
-        loadImage("images/Player/player.png");
-        getImageDimensions();
     }
     
     public void move(){

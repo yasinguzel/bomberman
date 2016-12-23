@@ -53,6 +53,8 @@ public class Board extends JPanel implements ActionListener
         setDoubleBuffered(true);
         players[0] = new Player(480, 464 - 32);//col:15 line:12
         players[1] = new Player(32, 80 - 32);//col:1 line:1
+        players[0].loadImage("images/Player/player0.png");
+        players[1].loadImage("images/Player/player1.png");
         drawMap();
         timer = new Timer(100, (ActionListener) this);
         timer.start();

@@ -20,7 +20,6 @@ public class FragileWall extends Walls{
 
     private void initFragileWall() {
         loadImage("images/walls/fragilewall.png");
-        getImageDimensions();
     }
     
     public boolean isVisible(){

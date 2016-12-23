@@ -43,7 +43,6 @@ public class Flame extends Entity implements ActionListener
         {
              loadImage("images/walls/FlameLeft.png");
         }
-        getImageDimensions();
         timer = new Timer(500, (ActionListener) this);
         timer.start();
     }
