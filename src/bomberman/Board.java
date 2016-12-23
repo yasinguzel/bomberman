@@ -221,28 +221,20 @@ public class Board extends JPanel implements ActionListener
                                 {
                                     entities[line + i][column] = new Flame(x, y, FlameDirection.Down);
                                     timer.stop();
-                                    SwingUtilities.invokeLater(new Runnable()
+                                    SwingUtilities.invokeLater(() ->
                                     {
-                                        @Override
-                                        public void run()
-                                        {
-                                            JOptionPane.showMessageDialog(null, "Player 2 wins");
-                                            System.exit(0);
-                                        }
+                                        JOptionPane.showMessageDialog(null, "Purple wins");
+                                        System.exit(0);
                                     });
                                 }
                                 if (map[line + i][column] == 6)
                                 {
                                     entities[line + i][column] = new Flame(x, y, FlameDirection.Down);
                                     timer.stop();
-                                    SwingUtilities.invokeLater(new Runnable()
+                                    SwingUtilities.invokeLater(() ->
                                     {
-                                        @Override
-                                        public void run()
-                                        {
-                                            JOptionPane.showMessageDialog(null, "Player 1 wins");
-                                            System.exit(0);
-                                        }
+                                        JOptionPane.showMessageDialog(null, "Blue wins");
+                                        System.exit(0);
                                     });
                                 }
                             }
@@ -267,14 +259,10 @@ public class Board extends JPanel implements ActionListener
                                 {
                                     entities[line][column + i] = new Flame(x, y, FlameDirection.Right);
                                     timer.stop();
-                                    SwingUtilities.invokeLater(new Runnable()
+                                    SwingUtilities.invokeLater(() ->
                                     {
-                                        @Override
-                                        public void run()
-                                        {
-                                            JOptionPane.showMessageDialog(null, "Player 2 wins");
-                                            System.exit(0);
-                                        }
+                                        JOptionPane.showMessageDialog(null, "Purple wins");
+                                        System.exit(0);
                                     });
                                 }
                                 if (map[line][column + i] == 6)
@@ -282,14 +270,10 @@ public class Board extends JPanel implements ActionListener
                                     map[line][column + i] = 0;
                                     entities[line][column + i] = new Flame(x, y, FlameDirection.Right);
                                     timer.stop();
-                                    SwingUtilities.invokeLater(new Runnable()
+                                    SwingUtilities.invokeLater(() ->
                                     {
-                                        @Override
-                                        public void run()
-                                        {
-                                            JOptionPane.showMessageDialog(null, "Player 1 wins");
-                                            System.exit(0);
-                                        }
+                                        JOptionPane.showMessageDialog(null, "Blue wins");
+                                        System.exit(0);
                                     });
                                 }
                             }
@@ -314,28 +298,20 @@ public class Board extends JPanel implements ActionListener
                                 {
                                     entities[line - i][column] = new Flame(x, y, FlameDirection.Up);
                                     timer.stop();
-                                    SwingUtilities.invokeLater(new Runnable()
+                                    SwingUtilities.invokeLater(() ->
                                     {
-                                        @Override
-                                        public void run()
-                                        {
-                                            JOptionPane.showMessageDialog(null, "Player 2 wins");
-                                            System.exit(0);
-                                        }
+                                        JOptionPane.showMessageDialog(null, "Purple wins");
+                                        System.exit(0);
                                     });
                                 }
                                 if (map[line - i][column] == 6)
                                 {
                                     entities[line - i][column] = new Flame(x, y, FlameDirection.Up);
                                     timer.stop();
-                                    SwingUtilities.invokeLater(new Runnable()
+                                    SwingUtilities.invokeLater(() ->
                                     {
-                                        @Override
-                                        public void run()
-                                        {
-                                            JOptionPane.showMessageDialog(null, "Player 1 wins");
-                                            System.exit(0);
-                                        }
+                                        JOptionPane.showMessageDialog(null, "Blue wins");
+                                        System.exit(0);
                                     });
                                 }
                             }
@@ -360,28 +336,20 @@ public class Board extends JPanel implements ActionListener
                                 {
                                     entities[line][column - i] = new Flame(x, y, FlameDirection.Left);
                                     timer.stop();
-                                    SwingUtilities.invokeLater(new Runnable()
+                                    SwingUtilities.invokeLater(() ->
                                     {
-                                        @Override
-                                        public void run()
-                                        {
-                                            JOptionPane.showMessageDialog(null, "Player 2 wins");
-                                            System.exit(0);
-                                        }
+                                        JOptionPane.showMessageDialog(null, "Purple wins");
+                                        System.exit(0);
                                     });
                                 }
                                 if (map[line][column - i] == 6)
                                 {
                                     entities[line][column - i] = new Flame(x, y, FlameDirection.Left);
                                     timer.stop();
-                                    SwingUtilities.invokeLater(new Runnable()
+                                    SwingUtilities.invokeLater(() ->
                                     {
-                                        @Override
-                                        public void run()
-                                        {
-                                            JOptionPane.showMessageDialog(null, "Player 1 wins");
-                                            System.exit(0);
-                                        }
+                                        JOptionPane.showMessageDialog(null, "Blue wins");
+                                        System.exit(0);
                                     });
                                 }
                             }
@@ -390,28 +358,20 @@ public class Board extends JPanel implements ActionListener
                             {
                                 entities[line][column] = new Flame(x, y, FlameDirection.Up);
                                 timer.stop();
-                                SwingUtilities.invokeLater(new Runnable()
+                                SwingUtilities.invokeLater(() ->
                                 {
-                                    @Override
-                                    public void run()
-                                    {
-                                        JOptionPane.showMessageDialog(null, "Player 2 wins");
-                                        System.exit(0);
-                                    }
+                                    JOptionPane.showMessageDialog(null, "Purple wins");
+                                    System.exit(0);
                                 });
                             }
                             if (player2X == column && player2Y == line)
                             {
                                 entities[line][column] = new Flame(x, y, FlameDirection.Up);
                                 timer.stop();
-                                SwingUtilities.invokeLater(new Runnable()
+                                SwingUtilities.invokeLater(() ->
                                 {
-                                    @Override
-                                    public void run()
-                                    {
-                                        JOptionPane.showMessageDialog(null, "Player 1 wins");
-                                        System.exit(0);
-                                    }
+                                    JOptionPane.showMessageDialog(null, "Blue wins");
+                                    System.exit(0);
                                 });
                             }
 
@@ -501,7 +461,7 @@ public class Board extends JPanel implements ActionListener
         public void actionPerformed(ActionEvent e)
         {
 
-            for (int key : listener.GetKeys())
+            listener.GetKeys().stream().map((key) ->
             {
                 if (key == KeyEvent.VK_LEFT)
                 {
@@ -509,7 +469,6 @@ public class Board extends JPanel implements ActionListener
                     if (map[player1Y][player1X] != 0)
                     {
                         player1X++;
-
                     } else
                     {
                         map[player1Y][player1X] = 1;
@@ -523,6 +482,9 @@ public class Board extends JPanel implements ActionListener
                         players[0].move();
                     }
                 }
+                return key;
+            }).map((key) ->
+            {
                 if (key == KeyEvent.VK_RIGHT)
                 {
                     player1X++;
@@ -542,6 +504,9 @@ public class Board extends JPanel implements ActionListener
                         players[0].move();
                     }
                 }
+                return key;
+            }).map((key) ->
+            {
                 if (key == KeyEvent.VK_UP)
                 {
                     player1Y--;
@@ -559,10 +524,11 @@ public class Board extends JPanel implements ActionListener
                         player1Y--;
                         players[0].setDy(-32);
                         players[0].move();
-
                     }
-
                 }
+                return key;
+            }).map((key) ->
+            {
                 if (key == KeyEvent.VK_DOWN)
                 {
                     player1Y++;
@@ -582,6 +548,9 @@ public class Board extends JPanel implements ActionListener
                         players[0].move();
                     }
                 }
+                return key;
+            }).map((key) ->
+            {
                 if (key == KeyEvent.VK_A)
                 {
                     player2X--;
@@ -601,6 +570,9 @@ public class Board extends JPanel implements ActionListener
                         players[1].move();
                     }
                 }
+                return key;
+            }).map((key) ->
+            {
                 if (key == KeyEvent.VK_D)
                 {
                     player2X++;
@@ -620,6 +592,9 @@ public class Board extends JPanel implements ActionListener
                         players[1].move();
                     }
                 }
+                return key;
+            }).map((key) ->
+            {
                 if (key == KeyEvent.VK_W)
                 {
                     player2Y--;
@@ -640,6 +615,9 @@ public class Board extends JPanel implements ActionListener
                     }
 
                 }
+                return key;
+            }).map((key) ->
+            {
                 if (key == KeyEvent.VK_S)
                 {
                     player2Y++;
@@ -659,7 +637,9 @@ public class Board extends JPanel implements ActionListener
                         players[1].move();
                     }
                 }
-
+                return key;
+            }).map((key) ->
+            {
                 if (key == KeyEvent.VK_SPACE)//player 2
                 {
                     if (players[1].bombCount != 0 && map[player1Y][player1X] != 4)
@@ -675,6 +655,9 @@ public class Board extends JPanel implements ActionListener
                         players[1].bombCount--;
                     }
                 }
+                return key;
+            }).map((key) ->
+            {
                 if (key == KeyEvent.VK_L)//player 1
                 {
                     if (players[0].bombCount != 0 && map[player1Y][player1X] != 4)
@@ -690,8 +673,11 @@ public class Board extends JPanel implements ActionListener
                         players[0].bombCount--;
                     }
                 }
+                return key;
+            }).forEachOrdered((_item) ->
+            {
                 repaint();
-            }
+            });
         }
 
         private void bombPutSound()
