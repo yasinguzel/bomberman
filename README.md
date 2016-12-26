@@ -1,6 +1,10 @@
 # Bomberman
 ##Bomberman ’da Kullanılan Nesneler
 
+<p align="center">
+  <img style="float: right;" src="Bomberman/images/Screenshot.png" alt="Bomberman Screen Shout" />
+</p>
+
 *Kırılamayan Duvarlar
 *Kırılabilen Duvarlar
 *Bomba
