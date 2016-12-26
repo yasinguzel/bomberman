@@ -4,10 +4,6 @@
 
 ##Bomberman ’da Kullanılan Nesneler
 
-<p align="center">
-  <img style="float: right;" src="images/Screenshot.png" alt="Bomberman Screen Shout" />
-</p>
-
 *Kırılamayan Duvarlar
 
 *Kırılabilen Duvarlar
@@ -87,3 +83,10 @@ NOT:Projemizde toplam 12  adet sınıf kullanılmıştır.
 *Graphics metotları
 
 *Override
+
+##Ekran Görüntüleri
+
+<p align="center">
+  <img style="float: right;" src="images/Screenshot.png" alt="Bomberman Screen Shout" />
+</p>
+
