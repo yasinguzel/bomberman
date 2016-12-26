@@ -1,14 +1,21 @@
 # Bomberman
+
+* English Documention Coming.
+
 ##Bomberman ’da Kullanılan Nesneler
 
 <p align="center">
-  <img style="float: right;" src="Bomberman/images/Screenshot.png" alt="Bomberman Screen Shout" />
+  <img style="float: right;" src="images/Screenshot.png" alt="Bomberman Screen Shout" />
 </p>
 
 *Kırılamayan Duvarlar
+
 *Kırılabilen Duvarlar
+
 *Bomba
+
 *Bomba Alevleri
+
 *Oyuncular
 
 ##Oyunun Yapılış Amacı 
@@ -22,14 +29,21 @@ Oyun panelin açılması ile mor oyuncu sol üst köşe ,mavi oyuncu sağ alt k�
 ##Class Hiyerarşisi
 
 *Entity.java sınıfından;
+
 *Player.java,
+
 *Bomb.java[ActionListener‘ı -> İmplement ediyor]
+
 *Flame.java [ActionListener’ı ->İmplement ediyor]
+
 *Walls.java
+
 *Extends ediliyor.
 
 *Walls.java sınıfından; 
+
 *FragileWall.java 
+
 *NonFragileWall.java 
 
 Extends ediliyor.
@@ -57,11 +71,19 @@ NOT:Projemizde toplam 12  adet sınıf kullanılmıştır.
 ##Projemizde Kullanılan Yapılar Ve Özellikler
 
 *İmplement
+
 *Extend
+
 *JPanel
+
 *JFrame
+
 *Kapsülleme
+
 *Enum
+
 *Timer
+
 *Graphics metotları
+
 *Override
