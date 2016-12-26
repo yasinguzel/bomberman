@@ -2,45 +2,45 @@
 
 * English Documention Coming.
 
-##Bomberman ’da Kullanılan Nesneler
+## Bomberman ’da Kullanılan Nesneler
 
-*Kırılamayan Duvarlar
+* Kırılamayan Duvarlar
 
-*Kırılabilen Duvarlar
+* Kırılabilen Duvarlar
 
-*Bomba
+* Bomba
 
-*Bomba Alevleri
+* Bomba Alevleri
 
-*Oyuncular
+* Oyuncular
 
-##Oyunun Yapılış Amacı 
-*Nostaljik Bomberman oyununun her bilgisayarda çalışmasını ve 2 kişinin eğlenceli vakit geçirmesini sağlamak.
+## Oyunun Yapılış Amacı 
+* Nostaljik Bomberman oyununun her bilgisayarda çalışmasını ve 2 kişinin eğlenceli vakit geçirmesini sağlamak.
 
 
-##Oyunun İşleyişi;
+## Oyunun İşleyişi;
 
 Oyun panelin açılması ile mor oyuncu sol üst köşe ,mavi oyuncu sağ alt köşede olmak üzere çevresinde ve içinde belirli yerlerde kırılamayan duvarlarla kaplı diğer kalan kısmın ise bombalar ile kırılabilir duvarların olduğu bir haritada başlarlar. Panelin üst kısmında ise oyuncu klavye kontrolleri gösterilmektedir. Oyuncular klavyeden belirlenen tuşlar ile oyuncuyu kontrol eder. Oyuncular duvarları patlatarak rakip oyuncuya ulaşıp rakibi bombayla öldürmeyi hedef alır.Rakibini ilk öldüren oyuncunun kazanmasıyla oyun sona erer.
 
-##Class Hiyerarşisi
+## Class Hiyerarşisi
 
-*Entity.java sınıfından;
+* Entity.java sınıfından;
 
-*Player.java,
+* Player.java,
 
-*Bomb.java[ActionListener‘ı -> İmplement ediyor]
+* Bomb.java[ActionListener‘ı -> İmplement ediyor]
 
-*Flame.java [ActionListener’ı ->İmplement ediyor]
+* Flame.java [ActionListener’ı ->İmplement ediyor]
 
-*Walls.java
+* Walls.java
 
-*Extends ediliyor.
+* Extends ediliyor.
 
-*Walls.java sınıfından; 
+* Walls.java sınıfından; 
 
-*FragileWall.java 
+* FragileWall.java 
 
-*NonFragileWall.java 
+* NonFragileWall.java 
 
 Extends ediliyor.
 
@@ -64,27 +64,27 @@ Aynı zamanda oluşturulan form ekranın boyut,başlık,büyütülemeyen ekran(R
 
 NOT:Projemizde toplam 12  adet sınıf kullanılmıştır.
 
-##Projemizde Kullanılan Yapılar Ve Özellikler
+## Projemizde Kullanılan Yapılar Ve Özellikler
 
-*İmplement
+* İmplement
 
-*Extend
+* Extend
 
-*JPanel
+* JPanel
 
-*JFrame
+* JFrame
 
-*Kapsülleme
+* Kapsülleme
 
-*Enum
+* Enum
 
-*Timer
+* Timer
 
-*Graphics metotları
+* Graphics metotları
 
-*Override
+* Override
 
-##Ekran Görüntüleri
+## Ekran Görüntüleri
 
 <p align="center">
   <img style="float: right;" src="images/Screenshot.png" alt="Bomberman Screen Shout" />
