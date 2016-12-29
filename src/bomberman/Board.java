@@ -642,7 +642,7 @@ public class Board extends JPanel implements ActionListener
             {
                 if (key == KeyEvent.VK_SPACE)//player 2
                 {
-                    if (players[1].bombCount != 0 && map[player1Y][player1X] != 4)
+                    if (players[1].bombCount != 0 && map[player2Y][player2X] != 4)
                     {
                         x = player2X * multiplier;
                         y = player2Y * multiplier + scorBoardSpace;
