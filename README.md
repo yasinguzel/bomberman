@@ -3,9 +3,13 @@
 * English Documention Coming.
 
 ## Yükleme
+
 1. [Buradan] (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) işletim sistemine uygun JDK indirin. 
+
 2. [Buradan] (https://github.com/yasinguzel/Bomberman/releases/download/Bomberman(v1.0)/Bomberman.v1.0.zip) oyunu zip halinde indirin.
+
 3. Zip dosyasından çıkartıp Bomberman.jar dosyasını çalıştırın.
+
 ## Bomberman ’da Kullanılan Nesneler
 
 * Kırılamayan Duvarlar
